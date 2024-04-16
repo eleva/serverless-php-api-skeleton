@@ -10,8 +10,6 @@ phases:
       - npm install -g serverless
       # Install redocly globally
       - npm install -g @redocly/cli
-      # Install dependencies
-      - npm install && npm run layer-dependencies-install && npm run layer-shared-install
       # Configure serverless cli user
       - sls config credentials --provider aws --key $AWS_KEY --secret $AWS_SECRET
   build:
