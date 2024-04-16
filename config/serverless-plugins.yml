@@ -1,4 +1,4 @@
-- serverless-offline #local environment
+- ./vendor/bref/bref #bref
 - serverless-openapi-documenter #documentation
 - serverless-slic-watch-plugin #monitoring
 - serverless-api-gateway-caching #cache

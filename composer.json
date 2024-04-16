@@ -1,0 +1,16 @@
+{
+    "require": {
+        "bref/bref": "^2.1",
+        "league/openapi-psr7-validator": "^0.22.0"
+    },
+    "require-dev": {
+        "bref/dev-server": "dev-master",
+        "phpunit/phpunit": "^10.5"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/eleva/bref-dev-server.git"
+        }
+    ]
+}

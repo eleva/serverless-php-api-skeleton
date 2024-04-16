@@ -1,5 +1,5 @@
 hello:
-  handler: src/function/hello/index.handler #function handler
+  handler: src/function/hello/index.php #function handler
   package: #package patterns
     include:
       - "!**/*"

@@ -13,5 +13,8 @@
 /doc/build
 !/doc/build/.gitkeep
 .redocly.lint-ignore.yaml
+# Vendor
+vendor
 # Tests
-coverage
+.phpunit.result.cache
+.phpunit.cache
