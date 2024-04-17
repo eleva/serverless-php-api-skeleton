@@ -2,6 +2,7 @@
 
 use App\HelloHandler;
 use PHPUnit\Framework\TestCase;
+use Nyholm\Psr7\Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use League\OpenAPIValidation\PSR7\ValidatorBuilder;
@@ -55,6 +56,7 @@ final class HelloTest extends TestCase
     {
         $event = $this->creator->fromGlobals();
         $response = $this->handler->handle($event,null);
+        $response = new Response(200, ["Content-Type"=>'application/json'], $response['body']);
         $responseJson = json_decode($response->getBody()->getContents(),true);
 
         $yamlFile = "doc/build/openapi.yaml";
