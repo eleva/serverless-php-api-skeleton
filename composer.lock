@@ -1655,12 +1655,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eleva/bref-dev-server.git",
-                "reference": "55c156d040c35505ca220c213621b711077d1060"
+                "reference": "67b55f7845021fd58d265684e41eab0839cb14eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eleva/bref-dev-server/zipball/55c156d040c35505ca220c213621b711077d1060",
-                "reference": "55c156d040c35505ca220c213621b711077d1060",
+                "url": "https://api.github.com/repos/eleva/bref-dev-server/zipball/67b55f7845021fd58d265684e41eab0839cb14eb",
+                "reference": "67b55f7845021fd58d265684e41eab0839cb14eb",
                 "shasum": ""
             },
             "require": {
@@ -1713,7 +1713,7 @@
                     "url": "https://github.com/mnapoli"
                 }
             ],
-            "time": "2024-04-16T07:00:38+00:00"
+            "time": "2024-04-16T11:20:32+00:00"
         },
         {
             "name": "filp/whoops",

@@ -3,6 +3,7 @@ hello:
   package: #package patterns
     include:
       - "!**/*"
+      - vendor/**
       - src/function/hello/**
   events: #events
     #keep warm event
