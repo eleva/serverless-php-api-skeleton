@@ -11,7 +11,6 @@ This repo is strongly based on implementing a REST API following [AWS Serverless
 This repo contains a serverless REST API which:
 - use AWS Lambda as compute layer of serverless tier
 - use API Gateway as interface layer of serverless tier
-- use AWS RDS Mysql 8.0 as data tier
 - use AWS CodePipeline and CodeBuild as CI/CD Pipeline to deploy the API
 
 In this repo we adopt those DevOps practices:
@@ -38,56 +37,38 @@ To start working locally and deploy this project you'll need to install and conf
 
 - Install [Serverless](https://www.serverless.com/framework/docs/getting-started)
 
-```
+```terminal
 npm install -g serverless
 ```
 
-- Install [serverless offline plugin](https://www.serverless.com/plugins/serverless-offline)
-```bash
-sls plugin install -n serverless-offline
+or
+
+```terminal
+cd .dev/docker && docker stop $(docker ps -aq) && docker-compose build && docker-compose up -d
 ```
 
 ## 🐳 Local Environment
-This repo comes with a [mysql-8 docker](https://hub.docker.com/_/mysql) container, if you want to use a local database as your local environment.
-Skip this step if you use an AWS RDS database.
-Execute this script to start it.
+This repo comes with a PHP-fpm docker container to execute useful command prepared for you in `cmd` folder
+Execute this script to start them.
 
 ```bash
-npm run db
-```
-
-Then connect with your preferred client to ```mysql:mysql@localhost:3306/mysql```
-You can use any mysql database instance you prefer  (as AWS RDS in cloud) simply changing ```.env.*``` vars.
-
-```dotenv
-#RDS CONFIG
-DB_HOST=localhost
-DB_DATABASE=mysql
-DB_USERNAME=mysql
-DB_PASSWORD=mysql
-```
-
-To successfully run this repo please connect to your database and create ```user``` table as follow
-```sql
-CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+npm run docker
 ```
 
 ## 🚀 Run Locally
-Start serverless offline from root directory
+When your container is active you run a local development server based on Bref [dev-server](https://github.com/brefphp/dev-server)
 
-```bash
-npm install
+```terminal
+cmd/server
 ```
 
-```bash
-sls offline
+or, if you do not use docker and you have PHP installed on your host
+
+```terminal
+vendor/bin/bref-server
 ```
 
-It will start for you a server and run the api at http://localhost:3000 emulating API Gateway and Lambda locally with serverless-offline plugin
+It will start for you a server and run the api at http://0.0.0.0:8000 emulating API Gateway and Lambda locally with Bref
 It will use your ```.env.local``` configuration if present, or your ```.env.dev``` configuration as a fallback.
 
 ## ⚡ Serverless.yml
@@ -117,8 +98,8 @@ to create doc resources in ```doc``` folder:
 
 
 ## 🧪 Tests
-Sample tests are implemented using [jest](https://jestjs.io/) and [jest-openapi](https://github.com/openapi-library/OpenAPIValidators/tree/master/packages/jest-openapi)
-Tests under ```_tests_``` folder, validate request and response model against generated OpenApi V3 specification, which are defined in your ```severless.yml``` architecture file (importing ```models``` folder files).
+Sample tests are implemented using [PHPUNIT](https://phpunit.de/index.html) and [openapi-psr7-validator](https://github.com/thephpleague/openapi-psr7-validator)
+Tests under ```tests``` folder, validate request and response model against generated OpenApi V3 specification, which are defined in your ```severless.yml``` architecture file (importing ```models``` folder files).
 
 Please be sure to generate doc files before testing running
 ```bash
@@ -130,22 +111,13 @@ Then copy ```.env.dist``` to ```.env.test```, and customize your env vars.
 Finally, run your test with
 
 ```bash
-npm run test
+cmd/test
 ```
 
-This command will run for you jest defining ```.env.test``` as dotenv file to be used as follow
+or, if you do not use docker and you have PHP installed on your host
+
 ```bash
-DOTENV_CONFIG_PATH=.env.test jest --coverage
-```
-
-You'll find your test coverage under ```coverage``` folder.<br>
-
-### Autogenerate tests from serverless file
-After defining a function, you can create test for a function simply using [serverless-jest-plugin](https://github.com/nordcloud/serverless-jest-plugin)
-
-To create a new test execute this command switching ```functionName``` parameter with ones defined in your ```serverless.yml``` file
-```bash
-sls create test -f functionName
+vendor/bin/phpunit
 ```
 
 ## 👣 Cloud Footprint
@@ -162,6 +134,7 @@ package:
 package: #package patterns
     include:
       - "!**/*"
+      - vendor/**
       - src/function/hello/**
 ```
 
