@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "my-api",
   "scripts": {
-    "test": "",
     "prune": "sls prune -n 3 --dryRun",
     "doc": "sls openapi generate -o ./doc/build/openapi.yaml -a 3.0.3 -f yaml && sls openapi generate -o ./doc/build/openapi.json -a 3.0.3 -f json -p ./doc/build/postman.json && redocly lint ./doc/build/openapi.yaml --generate-ignore-file && redocly build-docs ./doc/build/openapi.yaml --output=./doc/build/index.html",
-    "run": "cd .dev/docker && docker stop $(docker ps -aq) && docker-compose build && docker-compose up -d"
+    "docker": "cd .dev/docker && docker stop $(docker ps -aq) && docker-compose build && docker-compose up -d"
   },
   "author": "d.desio@eleva.it",
   "license": "ISC",
