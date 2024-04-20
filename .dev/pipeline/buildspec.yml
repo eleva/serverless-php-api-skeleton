@@ -2,7 +2,8 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 16
+      php: 8.1
     commands:
       # Update packages
       - apt update -y
@@ -10,6 +11,12 @@ phases:
       - npm install -g serverless
       # Install redocly globally
       - npm install -g @redocly/cli
+      #Install npm dependencies
+      - npm install
+      # Install composer
+      - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+      # Install composer dependencies
+      - composer install --no-dev
       # Configure serverless cli user
       - sls config credentials --provider aws --key $AWS_KEY --secret $AWS_SECRET
   build:
@@ -24,8 +31,8 @@ phases:
       - AWS_ACCESS_KEY_ID=$AWS_KEY AWS_SECRET_ACCESS_KEY=$AWS_SECRET aws s3 cp ./doc/postman.json s3://$DOC_BUCKET/$STAGE_NAME/postman.json
       - AWS_ACCESS_KEY_ID=$AWS_KEY AWS_SECRET_ACCESS_KEY=$AWS_SECRET aws s3 cp ./doc/openapi.json s3://$DOC_BUCKET/$STAGE_NAME/openapi.json
       - AWS_ACCESS_KEY_ID=$AWS_KEY AWS_SECRET_ACCESS_KEY=$AWS_SECRET aws s3 cp ./doc/openapi.yaml s3://$DOC_BUCKET/$STAGE_NAME/openapi.yaml
-      # Execute test with jest
-      # npm run test
+      # Execute test with phpunit
+      # vendor/bin/phpunit
       # Deploy API with serverless
       - sls deploy --stage $STAGE_NAME #deploy serverless specific stage
 

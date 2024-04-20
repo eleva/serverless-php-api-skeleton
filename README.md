@@ -1,8 +1,8 @@
 # Serverless API skeleton
 
 ## 👩🏻‍💻 Learn more
-If you want to learn more about how to use and the assumptions behind this repo, please read this article
-https://dev.to/ddesio/superpower-rest-api-dx-with-serverless-and-devops-best-practices-with-aws-51f6
+If you want to learn more about how to use and the assumptions behind this repo, please read this article and this other article
+https://dev.to/ddesio/superpower-rest-api-dx-with-serverless-and-devops-best-practices-with-aws-51f6 
 
 Comments, share, PRs are welcomed.
 
