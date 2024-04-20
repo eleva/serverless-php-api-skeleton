@@ -1,7 +1,7 @@
 # Serverless API skeleton
 
 ## 👩🏻‍💻 Learn more
-If you want to learn more about how to use and the assumptions behind this repo, please read this article and this other article
+If you want to learn more about how to use and the assumptions behind this repo, please read this article (second of the series) https://dev.to/ddesio/superpower-rest-api-dx-with-serverless-and-devops-best-practices-on-aws-php-version-2j8j and this other article (first of the series)
 https://dev.to/ddesio/superpower-rest-api-dx-with-serverless-and-devops-best-practices-with-aws-51f6 
 
 Comments, share, PRs are welcomed.
@@ -56,13 +56,16 @@ npm run docker
 ```
 
 ## 🚀 Run Locally
+
+### Install dependencies
+
 When your container is active you run a local development server based on Bref [dev-server](https://github.com/brefphp/dev-server)
 
 ```terminal
 cmd/server
 ```
 
-or, if you do not use docker and you have PHP installed on your host
+or, if you don't use docker and you have PHP installed on your host
 
 ```terminal
 vendor/bin/bref-server
@@ -114,7 +117,7 @@ Finally, run your test with
 cmd/test
 ```
 
-or, if you do not use docker and you have PHP installed on your host
+or, if you don't use docker and you have PHP installed on your host
 
 ```bash
 vendor/bin/phpunit
