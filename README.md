@@ -57,8 +57,6 @@ npm run docker
 
 ## 🚀 Run Locally
 
-### Install dependencies
-
 When your container is active you run a local development server based on Bref [dev-server](https://github.com/brefphp/dev-server)
 
 ```terminal
