@@ -14,7 +14,7 @@ class HelloHandler implements Handler
      * @param Context|null $context
      * @return array
      */
-    public function handle($event, ?Context $context): array
+    public function handle($event, ?Context $context = null): array
     {
         return [
             "statusCode"=>200,
